@@ -1,4 +1,3 @@
-import '../../style.css'
 import * as THREE from 'https://unpkg.com/three@0.129.0/build/three.module.js'
 
 const scene = new THREE.Scene();
@@ -61,3 +60,14 @@ function animate(){
 }
 
 animate();
+
+function addRandom() {
+  let star = new THREE.Mesh(new THREE.TetrahedronGeometry(1,2),new THREE.MeshLambertMaterial({color: 0xffffff, wireframe:true}));
+
+  let [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 500 ));
+
+  star.position.set(x,y,z);
+  scene.add(star);
+}
+
+Array(1000).fill().forEach(() => addRandom());
