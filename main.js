@@ -35,7 +35,7 @@ scene.add(heart);
 scene.add(torus);
 scene.add(plane);
 
-const pointLight = new THREE.PointLight(0xffffff);
+const pointLight = new THREE.PointLight(0xfd5f53);
 pointLight.position.set(20,20,20);
 
 scene.add(pointLight);
@@ -70,4 +70,26 @@ function addRandom() {
   scene.add(star);
 }
 
-Array(1000).fill().forEach(() => addRandom());
+Array(500).fill().forEach(() => addRandom());
+
+function addRandomC() {
+  let cube = new THREE.Mesh(new THREE.SphereGeometry(0,0),new THREE.MeshLambertMaterial({color: 0xffffff, wireframe:true}));
+
+  let [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 1000 ));
+
+  cube.position.set(x,y,z);
+  scene.add(cube);
+}
+
+Array(500).fill().forEach(() => addRandomC());
+
+function addRandomT() {
+  let cube = new THREE.Mesh(new THREE.TetrahedronGeometry(1,4),new THREE.MeshLambertMaterial({color: 0xffffff, wireframe:true}));
+
+  let [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 1000 ));
+
+  cube.position.set(x,y,z);
+  scene.add(cube);
+}
+
+Array(500).fill().forEach(() => addRandomT());
