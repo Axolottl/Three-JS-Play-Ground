@@ -27,14 +27,14 @@ for (let i = 2;i < array.length;i+=3)
   array[i]=THREE.MathUtils.randFloatSpread(10);
 }
 
-const torus = new THREE.Mesh(new THREE.TetrahedronGeometry(10,4,20,100),new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe:true, wireframeLinewidth: 20, dithering: true}))
+const torus = new THREE.Mesh(new THREE.TetrahedronGeometry(11,4,20,100),new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe:true, wireframeLinewidth: 20, dithering: true}))
 
 const heart = new THREE.Mesh(new THREE.TetrahedronGeometry(7,4),new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe:true, wireframeLinewidth: 20, dithering: true}))
 
-const heart2 = new THREE.Mesh(new THREE.TetrahedronGeometry(5,4),new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe:true, wireframeLinewidth: 20, dithering: true}))
+const heart2 = new THREE.Mesh(new THREE.TetrahedronGeometry(4,4),new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe:true, wireframeLinewidth: 20, dithering: true}))
 
 
-const beginning = new THREE.Mesh(new THREE.SphereGeometry(2,4),new THREE.MeshLambertMaterial({color: 0xCCCCCC, wireframe:true, wireframeLinewidth: 20, dithering: true}))
+const beginning = new THREE.Mesh(new THREE.SphereGeometry(1,4),new THREE.MeshLambertMaterial({color: 0xCCCCCC, wireframe:true, wireframeLinewidth: 20, dithering: true}))
 
 plane.rotateX(90);
 plane.rotateZ(-10);
