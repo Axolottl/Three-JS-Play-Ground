@@ -12,21 +12,31 @@ const renderer = new THREE.WebGL1Renderer(
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(30);
+camera.position.setZ(90);
 
 renderer.render( scene, camera);
 
-var plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(2000, 2000, 80, 100), new THREE.MeshToonMaterial({ color: 0xFFFFFF, side: THREE.DoubleSide ,wireframe: true}));
+var plane = new THREE.Mesh(new THREE.PlaneGeometry(1000, 1000, 100, 100), new THREE.MeshPhongMaterial({ color: 0xa0a0d, side: THREE.DoubleSide ,flatShading: THREE.FlatShading}));
 
-const torus = new THREE.Mesh(new THREE.TetrahedronGeometry(10,4,20,100),new THREE.MeshLambertMaterial({color: 0xFFFFFF, wireframe:true, wireframeLinewidth: 45, dithering: true}))
+console.log(plane.geometry.attributes.position.array);
 
-const heart = new THREE.Mesh(new THREE.TetrahedronGeometry(7,4),new THREE.MeshLambertMaterial({color: 0xFFFFFF, wireframe:true, wireframeLinewidth: 45, dithering: true}))
+const {array} = plane.geometry.attributes.position;
 
-const heart2 = new THREE.Mesh(new THREE.TetrahedronGeometry(5,4),new THREE.MeshLambertMaterial({color: 0xFFFFFF, wireframe:true, wireframeLinewidth: 45, dithering: true}))
+for (let i = 2;i < array.length;i+=3)
+{
+  array[i]=THREE.MathUtils.randFloatSpread(10);
+}
 
-const beginning = new THREE.Mesh(new THREE.SphereGeometry(2,4),new THREE.MeshLambertMaterial({color: 0xFFFFFF, wireframe:true, wireframeLinewidth: 45, dithering: true}))
+const torus = new THREE.Mesh(new THREE.TetrahedronGeometry(10,4,20,100),new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe:true, wireframeLinewidth: 20, dithering: true}))
 
-plane.rotateX(360);
+const heart = new THREE.Mesh(new THREE.TetrahedronGeometry(7,4),new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe:true, wireframeLinewidth: 20, dithering: true}))
+
+const heart2 = new THREE.Mesh(new THREE.TetrahedronGeometry(5,4),new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe:true, wireframeLinewidth: 20, dithering: true}))
+
+
+const beginning = new THREE.Mesh(new THREE.SphereGeometry(2,4),new THREE.MeshLambertMaterial({color: 0xCCCCCC, wireframe:true, wireframeLinewidth: 20, dithering: true}))
+
+plane.rotateX(90);
 plane.rotateZ(-10);
 
 scene.add(beginning);
@@ -35,17 +45,23 @@ scene.add(heart);
 scene.add(torus);
 scene.add(plane);
 
-const pointLight = new THREE.PointLight(0xfd5f53);
+const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(20,20,20);
 
 scene.add(pointLight);
 
-const ambientLight = new THREE.AmbientLight(0x000000);
+const ambientLight = new THREE.AmbientLight(0xffddff);
 
 scene.add(pointLight, ambientLight);
-
+console.log(torus.position)
+torus.position.set(0,12,0);
+heart.position.set(0,12,0)
+heart2.position.set(0,12,0)
+beginning.position.set(0,12,0)
+let rad = 0;
 function animate(){
   requestAnimationFrame( animate );
+  rad += 0.01;
   torus.rotation.x += 0.01;
   torus.rotation.y += 0.01;
   torus.rotation.z += 0.01;
@@ -56,6 +72,12 @@ function animate(){
   beginning.rotation.x -= 0.05;
   beginning.rotation.y -= 0.05;
 
+  const {array} = plane.geometry.attributes.position;
+  for (let i = 2;i < array.length;i+=3)
+  {
+    array[i]= array[i]+THREE.MathUtils.randFloatSpread(0.5);
+  }
+  plane.geometry.attributes.position.needsUpdate = true;
   renderer.render(scene, camera);
 }
 
@@ -64,7 +86,7 @@ animate();
 function addRandom() {
   let star = new THREE.Mesh(new THREE.TetrahedronGeometry(1,2),new THREE.MeshLambertMaterial({color: 0xffffff, wireframe:true}));
 
-  let [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 500 ));
+  let [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 1000 ));
 
   star.position.set(x,y,z);
   scene.add(star);
@@ -73,7 +95,7 @@ function addRandom() {
 Array(500).fill().forEach(() => addRandom());
 
 function addRandomC() {
-  let cube = new THREE.Mesh(new THREE.SphereGeometry(0,0),new THREE.MeshLambertMaterial({color: 0xffffff, wireframe:true}));
+  let cube = new THREE.Mesh(new THREE.TetrahedronGeometry(0,0),new THREE.MeshLambertMaterial({color: 0xffffff, wireframe:true}));
 
   let [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 1000 ));
 
