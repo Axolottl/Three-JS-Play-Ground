@@ -46,7 +46,7 @@ scene.add(torus);
 scene.add(plane);
 
 const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(20,20,20);
+pointLight.position.set(0,20,0);
 
 scene.add(pointLight);
 
