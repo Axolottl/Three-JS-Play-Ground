@@ -75,7 +75,7 @@ function animate(){
   const {array} = plane.geometry.attributes.position;
   for (let i = 2;i < array.length;i+=3)
   {
-    array[i]=array[i]+THREE.MathUtils.randFloatSpread(0.5)+Math.cos(rad);
+    array[i]=array[i]+THREE.MathUtils.randFloatSpread(0.5);
   }
   plane.geometry.attributes.position.needsUpdate = true;
   renderer.render(scene, camera);
