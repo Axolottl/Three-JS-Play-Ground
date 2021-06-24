@@ -46,7 +46,7 @@ scene.add(torus);
 scene.add(plane);
 
 const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(20,5,20);
+pointLight.position.set(20,20,20);
 
 scene.add(pointLight);
 
@@ -75,7 +75,7 @@ function animate(){
   const {array} = plane.geometry.attributes.position;
   for (let i = 2;i < array.length;i+=3)
   {
-    array[i]=+Math.cos(rad)*THREE.MathUtils.randFloatSpread(0.5);
+    array[i]=+THREE.MathUtils.randFloatSpread(0.5);
   }
   plane.geometry.attributes.position.needsUpdate = true;
   renderer.render(scene, camera);
