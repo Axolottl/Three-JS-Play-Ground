@@ -115,3 +115,14 @@ function addRandomT() {
 }
 
 Array(500).fill().forEach(() => addRandomT());
+
+function addRandomS() {
+  let sphere = new THREE.Mesh(new THREE.SphereGeometry(0,0),new THREE.MeshLambertMaterial({color: 0xffffff, wireframe:true}));
+
+  let [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 1000 ));
+
+  cube.position.set(x,y,z);
+  scene.add(cube);
+}
+
+Array(500).fill().forEach(() => addRandomS());
