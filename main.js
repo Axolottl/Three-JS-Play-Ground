@@ -58,7 +58,7 @@ torus.position.set(0,22,0);
 heart.position.set(0,22,0)
 heart2.position.set(0,22,0)
 beginning.position.set(0,22,0)
-let rad = 0;
+
 function animate(){
   requestAnimationFrame( animate );
   rad += 0.01;
