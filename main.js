@@ -53,12 +53,12 @@ scene.add(pointLight);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 
 scene.add(pointLight, ambientLight);
-console.log(torus.position)
+console.log(torus.position);
 torus.position.set(0,22,0);
-heart.position.set(0,22,0)
-heart2.position.set(0,22,0)
-beginning.position.set(0,22,0)
-
+heart.position.set(0,22,0);
+heart2.position.set(0,22,0);
+beginning.position.set(0,22,0);
+let rad = 0;
 function animate(){
   requestAnimationFrame( animate );
   rad += 0.01;
